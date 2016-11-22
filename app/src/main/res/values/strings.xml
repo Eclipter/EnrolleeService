@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Enrollee Service</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_sign_in">Войти</string>
+    <string name="action_sign_in_short">Вход</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_main">Сервис регистрации</string>
+    <string name="title_login">Вход в систему</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="drawer_news">Новости и правила</string>
+    <string name="drawer_registration">Записаться на тест</string>
+    <string name="drawer_my_tests">Мои тесты</string>
+    <string name="drawer_my_account">Личный кабинет</string>
+    <string name="nav_title_communicate">Отзыв</string>
+    <string name="nav_share">Поделиться</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
