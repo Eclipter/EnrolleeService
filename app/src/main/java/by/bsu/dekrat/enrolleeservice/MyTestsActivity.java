@@ -52,6 +52,7 @@ public class MyTestsActivity extends AppCompatActivity {
                 if(id == R.id.nav_news) {
                     Intent intent = new Intent(MyTestsActivity.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_tests);

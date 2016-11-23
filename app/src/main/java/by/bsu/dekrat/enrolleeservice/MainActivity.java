@@ -18,20 +18,18 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Toolbar toolbar;
-    private TabLayout tabLayout;
     private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.newsToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.newsToolbar);
         setSupportActionBar(toolbar);
 
         viewPager = (ViewPager) findViewById(R.id.newsViewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.newsTabLayout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.newsTabLayout);
         tabLayout.addTab(tabLayout.newTab().setText("Новости"));
         tabLayout.addTab(tabLayout.newTab().setText("Правила"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
@@ -95,6 +93,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_my_tests) {
             Intent intent = new Intent(this, MyTestsActivity.class);
             startActivity(intent);
+            finish();
         } else if (id == R.id.nav_account) {
 
         }  else if (id == R.id.nav_share) {
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity
     public class PagerAdapter extends FragmentStatePagerAdapter {
         int mNumOfTabs;
 
-        public PagerAdapter(android.support.v4.app.FragmentManager fm, int NumOfTabs) {
+        PagerAdapter(android.support.v4.app.FragmentManager fm, int NumOfTabs) {
             super(fm);
             this.mNumOfTabs = NumOfTabs;
         }
