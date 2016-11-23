@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="by.bsu.dekrat.enrolleeservice.MyTestsActivity"
-    android:fitsSystemWindows="true" tools:openDrawer="start">
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -19,10 +19,20 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/testsToolbar"
                 android:layout_width="match_parent"
+                android:title="@string/drawer_my_tests"
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
         </android.support.design.widget.AppBarLayout>
+
+        <ProgressBar
+            android:id="@+id/enrollment_progress"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:paddingTop="?attr/actionBarSize"
+            android:visibility="gone" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

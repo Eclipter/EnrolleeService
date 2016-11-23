@@ -41,8 +41,6 @@ public class MyTestsActivity extends AppCompatActivity {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        getSupportActionBar().setTitle("Мои тесты");
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_tests_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -51,6 +49,10 @@ public class MyTestsActivity extends AppCompatActivity {
 
                 if(id == R.id.nav_news) {
                     Intent intent = new Intent(MyTestsActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if(id == R.id.nav_enrollment) {
+                    Intent intent = new Intent(MyTestsActivity.this, TestEnrollmentActivity.class);
                     startActivity(intent);
                     finish();
                 }

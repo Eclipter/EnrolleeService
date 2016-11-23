@@ -88,8 +88,10 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_registration) {
-
+        if (id == R.id.nav_enrollment) {
+            Intent intent = new Intent(this, TestEnrollmentActivity.class);
+            startActivity(intent);
+            finish();
         } else if (id == R.id.nav_my_tests) {
             Intent intent = new Intent(this, MyTestsActivity.class);
             startActivity(intent);

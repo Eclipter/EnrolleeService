@@ -26,4 +26,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="universityLabel">Выберите ВУЗ</string>
+    <string name="subjectLabel">Выберите предмет</string>
+    <string name="dateLabel">Выберите дату</string>
+    <string name="timeLabel">Выберите время</string>
+    <string name="enrollButtonText">Записаться</string>
 </resources>

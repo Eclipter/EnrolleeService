@@ -7,7 +7,7 @@
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_public_black_24dp" />
         <item
-            android:id="@+id/nav_registration"
+            android:id="@+id/nav_enrollment"
             android:icon="@drawable/ic_assignment_black_24dp"
             android:title="@string/drawer_registration" />
         <item
