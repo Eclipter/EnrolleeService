@@ -31,6 +31,9 @@
         <activity
             android:name=".TestEnrollmentActivity"
             android:label="@string/drawer_registration" />
+        <activity
+            android:label="@string/drawer_my_account"
+            android:name=".AccountActivity" />
     </application>
 
 </manifest>

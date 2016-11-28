@@ -1,4 +1,4 @@
-package by.bsu.dekrat.enrolleeservice.news;
+package by.bsu.dekrat.enrolleeservice.entity;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -55,6 +55,10 @@ public class MyTestsActivity extends AppCompatActivity {
                     Intent intent = new Intent(MyTestsActivity.this, TestEnrollmentActivity.class);
                     startActivity(intent);
                     finish();
+                } else if (id == R.id.nav_account) {
+                    Intent intent = new Intent(MyTestsActivity.this, AccountActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_tests);

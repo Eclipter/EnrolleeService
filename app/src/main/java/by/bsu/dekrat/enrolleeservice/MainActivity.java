@@ -97,7 +97,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             finish();
         } else if (id == R.id.nav_account) {
-
+            Intent intent = new Intent(this, AccountActivity.class);
+            startActivity(intent);
+            finish();
         }  else if (id == R.id.nav_share) {
 
         }

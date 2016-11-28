@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import by.bsu.dekrat.enrolleeservice.news.NewsContent;
+import by.bsu.dekrat.enrolleeservice.entity.NewsContent;
 
 public class NewsFragment extends Fragment {
 

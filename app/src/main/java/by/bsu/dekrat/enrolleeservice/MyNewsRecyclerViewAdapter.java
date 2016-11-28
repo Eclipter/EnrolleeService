@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import by.bsu.dekrat.enrolleeservice.news.NewsContent;
+import by.bsu.dekrat.enrolleeservice.entity.NewsContent;
 
 public class MyNewsRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsRecyclerViewAdapter.ViewHolder> {
 

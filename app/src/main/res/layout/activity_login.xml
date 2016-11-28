@@ -31,9 +31,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
+            <TextView
+                android:text="Вход в систему регистрации на ЦТ"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:textAppearance="@android:style/TextAppearance.Material.Title"
+                android:textAlignment="center"
+                android:fontFamily="sans-serif-medium" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/emailInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:errorEnabled="true">
 
                 <AutoCompleteTextView
                     android:id="@+id/email"
@@ -46,8 +58,10 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/passwordInputLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorEnabled="true">
 
                 <EditText
                     android:id="@+id/password"
