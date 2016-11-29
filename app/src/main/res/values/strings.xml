@@ -31,4 +31,12 @@
     <string name="dateLabel">Выберите дату</string>
     <string name="timeLabel">Выберите время</string>
     <string name="enrollButtonText">Записаться</string>
+
+    <string name="changePasswordActionLabel">Изменить пароль</string>
+    <string name="oldPasswordLabel">Старый пароль</string>
+    <string name="newPasswordLabel">Новый пароль</string>
+    <string name="repeatPasswordLabel">Повторите пароль</string>
+    <string name="nameLabel">ФИО</string>
+    <string name="passportIdLabel">Идентификационный номер</string>
+    <string name="phoneNumberLabel">Номер телефона</string>
 </resources>

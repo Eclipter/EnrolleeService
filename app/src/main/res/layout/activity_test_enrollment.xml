@@ -50,7 +50,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:id="@+id/universityLabel" />
+                android:id="@+id/universityLabel"
+                android:textAppearance="@android:style/TextAppearance.Material.Menu" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -62,7 +63,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:id="@+id/subjectLabel" />
+                android:id="@+id/subjectLabel"
+                android:textAppearance="@android:style/TextAppearance.Material.Menu" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -74,7 +76,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:id="@+id/dateLabel" />
+                android:id="@+id/dateLabel"
+                android:textAppearance="@android:style/TextAppearance.Material.Menu" />
 
             <Spinner
                 android:layout_width="match_parent"
@@ -86,7 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:id="@+id/timeLabel" />
+                android:id="@+id/timeLabel"
+                android:textAppearance="@android:style/TextAppearance.Material.Menu" />
 
             <Spinner
                 android:layout_width="match_parent"

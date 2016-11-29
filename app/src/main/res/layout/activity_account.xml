@@ -21,7 +21,7 @@
                 android:id="@+id/accountToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:title="@string/drawer_registration"
+                android:title="@string/drawer_my_account"
                 android:background="?attr/colorPrimary"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme" />
@@ -36,6 +36,132 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:id="@+id/account_info">
+
+
+            <TextView
+                android:text="@string/nameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:id="@+id/nameLabel"
+                android:textAppearance="@android:style/TextAppearance.Material.Menu" />
+
+            <TextView
+                android:text="Android studio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameTextView"
+                android:textAppearance="@android:style/TextAppearance.Material.Small" />
+
+            <TextView
+                android:text="@string/prompt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:id="@+id/emailLabel"
+                android:textAppearance="@android:style/TextAppearance.Material.Menu" />
+
+            <TextView
+                android:text="androidstudio@gmail.com"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/emailTextView" />
+
+            <TextView
+                android:text="@string/passportIdLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:id="@+id/passportIdLabel"
+                android:textAppearance="@android:style/TextAppearance.Material.Menu" />
+
+            <TextView
+                android:text="3030797A011PB7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/passportIsTextView" />
+
+            <TextView
+                android:text="@string/phoneNumberLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:id="@+id/phoneNumberLabel"
+                android:textAppearance="@android:style/TextAppearance.Material.Menu" />
+
+            <TextView
+                android:text="+375296234498"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/phoneNumberTextView" />
+
+            <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="0px"
+                android:layout_height="0px"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/oldPasswordInputLayout"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/oldPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/oldPasswordLabel"
+                    android:imeActionId="@+id/password"
+                    android:imeActionLabel="@string/changePasswordActionLabel"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/newPasswordInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/newPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/newPasswordLabel"
+                    android:imeActionId="@+id/password"
+                    android:imeActionLabel="@string/changePasswordActionLabel"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/repeatPasswordInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/repeatPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/repeatPasswordLabel"
+                    android:imeActionId="@+id/password"
+                    android:imeActionLabel="@string/changePasswordActionLabel"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:text="Изменить пароль"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/changePasswordButton" />
 
 
         </LinearLayout>
