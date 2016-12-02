@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,11 +83,36 @@ public class AccountActivity extends AppCompatActivity {
                     Intent intent = new Intent(AccountActivity.this, TestEnrollmentActivity.class);
                     startActivity(intent);
                     finish();
+                } else if(id == R.id.nav_account) {
+                    Intent intent = new Intent(AccountActivity.this, AccountActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (id == R.id.nav_share) {
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT, "Привет! " +
+                            "Как насчёт оценить новое приложение для регистрации абитуриентов на РТ и ЦТ? :)");
+                    try {
+                        startActivity(Intent.createChooser(intent, "Поделиться..."));
+                    }
+                    catch (android.content.ActivityNotFoundException ex) {
+                        Toast.makeText(AccountActivity.this, "Нет приложений для того, чтобы поделиться", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_account);
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
+            }
+        });
+
+        ImageView imageView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.headerImageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AccountActivity.this, AccountActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

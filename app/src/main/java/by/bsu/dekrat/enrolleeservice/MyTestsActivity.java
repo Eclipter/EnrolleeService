@@ -15,7 +15,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.hateoas.PagedResources;
@@ -74,11 +77,36 @@ public class MyTestsActivity extends AppCompatActivity {
                     Intent intent = new Intent(MyTestsActivity.this, AccountActivity.class);
                     startActivity(intent);
                     finish();
+                } else if(id == R.id.nav_my_tests) {
+                    Intent intent = new Intent(MyTestsActivity.this, MyTestsActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (id == R.id.nav_share) {
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT, "Привет! " +
+                            "Как насчёт оценить новое приложение для регистрации абитуриентов на РТ и ЦТ? :)");
+                    try {
+                        startActivity(Intent.createChooser(intent, "Поделиться..."));
+                    }
+                    catch (android.content.ActivityNotFoundException ex) {
+                        Toast.makeText(MyTestsActivity.this, "Нет приложений для того, чтобы поделиться", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_tests);
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
+            }
+        });
+
+        ImageView imageView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.headerImageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyTestsActivity.this, AccountActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

@@ -16,7 +16,7 @@
         android:layout_width="70dp"
         app:srcCompat="@drawable/practice_tests_icon_white"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:id="@+id/imageView2"
+        android:id="@+id/headerImageView"
         android:layout_height="70dp" />
 
     <TextView

@@ -16,7 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -94,6 +97,16 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
+        ImageView imageView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.headerImageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AccountActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         TextView headerNameTextView = (TextView)
                 navigationView.getHeaderView(0).findViewById(R.id.headerNameTextView);
@@ -149,12 +162,25 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, MyTestsActivity.class);
             startActivity(intent);
             finish();
+        } else if(id == R.id.nav_news) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
         } else if (id == R.id.nav_account) {
             Intent intent = new Intent(this, AccountActivity.class);
             startActivity(intent);
             finish();
         }  else if (id == R.id.nav_share) {
-
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, "Привет! " +
+                    "Как насчёт оценить новое приложение для регистрации абитуриентов на РТ и ЦТ? :)");
+            try {
+                startActivity(Intent.createChooser(intent, "Поделиться..."));
+            }
+            catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(this, "Нет приложений для того, чтобы поделиться", Toast.LENGTH_SHORT).show();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_news);
