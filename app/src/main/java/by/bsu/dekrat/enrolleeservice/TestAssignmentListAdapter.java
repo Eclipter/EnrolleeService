@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
 
 import by.bsu.dekrat.enrolleeservice.entity.TestAssignment;
@@ -19,6 +20,7 @@ import by.bsu.dekrat.enrolleeservice.entity.TestAssignment;
 
 public class TestAssignmentListAdapter extends RecyclerView.Adapter<TestAssignmentListAdapter.ViewHolder> {
 
+    private Random random = new Random();
     private static final String DATE_PATTERN = "dd.MM.yyyy HH:mm";
     private static final String TIME_ZONE = "UTC";
 
@@ -54,6 +56,9 @@ public class TestAssignmentListAdapter extends RecyclerView.Adapter<TestAssignme
             holder.testInfoPointsTextView.setText("Н/Д");
             holder.testInfoPointsTextView.setAlpha(0.2f);
         }
+
+        holder.testPaymentTextView.setText(
+                String.format("Номер заказа в ЕРИП: %d", random.nextInt(1000000)));
     }
 
     @Override
@@ -68,6 +73,7 @@ public class TestAssignmentListAdapter extends RecyclerView.Adapter<TestAssignme
         TextView testInfoDateTextView;
         TextView testInfoPlaceTextView;
         TextView testInfoPointsTextView;
+        TextView testPaymentTextView;
         TestAssignment testAssignment;
 
         ViewHolder(View view) {
@@ -77,6 +83,7 @@ public class TestAssignmentListAdapter extends RecyclerView.Adapter<TestAssignme
             testInfoDateTextView = (TextView) view.findViewById(R.id.testDateTextView);
             testInfoPlaceTextView = (TextView) view.findViewById(R.id.testInfoPlaceTextView);
             testInfoPointsTextView = (TextView) view.findViewById(R.id.pointsTextView);
+            testPaymentTextView = (TextView) view.findViewById(R.id.testPaymentTextView);
         }
     }
 }

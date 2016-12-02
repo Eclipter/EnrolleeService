@@ -103,6 +103,8 @@ public class TestEnrollmentActivity extends AppCompatActivity {
             }
         });
 
+        navigationView.setCheckedItem(R.id.nav_enrollment);
+
         universitySpinner = (Spinner) findViewById(R.id.universitySpinner);
         subjectSpinner = (Spinner) findViewById(R.id.subjectSpinner);
         testSpinner = (Spinner) findViewById(R.id.testSpinner);

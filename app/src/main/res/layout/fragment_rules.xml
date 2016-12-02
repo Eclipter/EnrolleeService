@@ -4,10 +4,18 @@
     android:layout_height="match_parent"
     tools:context="by.bsu.dekrat.enrolleeservice.RulesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:inputType="textMultiLine"
+        android:text="         Для регистрации на РТ или ЦТ пройдите в соответствующее меню.
+         Выберите ВУЗ, в котором Вы хотите проходить тестирование, предмет и доступную дату и время.
+          После регистрации данный тест появится в панели 'Мои тесты', где Вы можете увидеть всю информацию о предстоящем тесте, включая аудиторию и номер заказа для оплаты в ЕРИП.
+            Для оплаты выберите пункт меню 'Образование и развитие -> Оплата РТ и ЦТ -> ВУЗ, в котором Вы будете проходить тест', и введите сгенерированный номер заказа. Код операции в ЕРИП Вы должны предъявить перед входом в аудиторию.
+            Вскоре после теста в панели 'Мои тесты' должны появиться Ваши результаты.
+            Также Вам должно прийти соответствующее уведомление на Ваш Email."
+        android:id="@+id/rulesTextView"
+        android:textAppearance="@android:style/TextAppearance.Material" />
 
 </FrameLayout>

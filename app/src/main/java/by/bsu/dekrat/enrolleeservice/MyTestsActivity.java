@@ -42,8 +42,6 @@ public class MyTestsActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private List<TestAssignment> assignmentList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +81,8 @@ public class MyTestsActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        navigationView.setCheckedItem(R.id.nav_my_tests);
 
         User currentUser = UserInfoProvider.getInstance().getCurrentUser();
         TextView headerNameTextView = (TextView)

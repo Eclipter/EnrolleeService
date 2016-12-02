@@ -28,8 +28,6 @@ public class MyNewsRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsRecycl
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).title);
     }
 
     @Override
@@ -39,20 +37,22 @@ public class MyNewsRecyclerViewAdapter extends RecyclerView.Adapter<MyNewsRecycl
 
     class ViewHolder extends RecyclerView.ViewHolder {
         final View mView;
-        final TextView mIdView;
-        final TextView mContentView;
+        final TextView newsTitleTextView;
+        final TextView newsContentTextView;
+        final TextView newsDateTextView;
         NewsContent.NewsItem mItem;
 
         ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            newsTitleTextView = (TextView) view.findViewById(R.id.newsTitleTextView);
+            newsContentTextView = (TextView) view.findViewById(R.id.newsContentTextView);
+            newsDateTextView = (TextView) view.findViewById(R.id.newsDateTextView);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + newsContentTextView.getText() + "'";
         }
     }
 }

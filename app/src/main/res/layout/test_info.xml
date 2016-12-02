@@ -28,9 +28,17 @@
         android:layout_width="wrap_content"
         android:paddingTop="8dp"
         android:layout_below="@id/testDateTextView"
-        android:layout_marginBottom="16dp"
         android:layout_height="wrap_content"
         android:id="@+id/testInfoPlaceTextView" />
+
+    <TextView
+        android:text="Номер заказа в ЕРИП: 213234"
+        android:layout_width="wrap_content"
+        android:paddingTop="8dp"
+        android:layout_below="@id/testInfoPlaceTextView"
+        android:layout_marginBottom="16dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/testPaymentTextView" />
 
     <TextView
         android:text="100"
