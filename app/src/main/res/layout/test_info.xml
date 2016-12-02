@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:id="@+id/testInfoTextView" />
-</LinearLayout>
+        android:paddingTop="16dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+        android:id="@+id/testInfoPrimaryText"
+        android:text="РТ: Математика" />
+
+    <TextView
+        android:text="01.12.2016 11:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:id="@+id/testDateTextView"
+        android:layout_below="@id/testInfoPrimaryText"
+        android:textAppearance="@style/TextAppearance.AppCompat.Notification" />
+
+    <TextView
+        android:text="БГУ (Независимости 58) ауд. 605"
+        android:layout_width="wrap_content"
+        android:paddingTop="8dp"
+        android:layout_below="@id/testDateTextView"
+        android:layout_marginBottom="16dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/testInfoPlaceTextView" />
+
+    <TextView
+        android:text="100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="24dp"
+        android:id="@+id/pointsTextView"
+        android:textAppearance="@android:style/TextAppearance.Material.Large"
+        android:textSize="36sp" />
+</RelativeLayout>

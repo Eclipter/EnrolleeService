@@ -18,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,8 +29,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.FormHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import by.bsu.dekrat.enrolleeservice.bean.SessionHolder;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -47,9 +59,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
      */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -305,25 +315,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+
+            String URL = "https://enrollee-service.herokuapp.com/login";
+            RestTemplate restTemplate = new RestTemplate();
+            restTemplate.setMessageConverters(Arrays.asList(new FormHttpMessageConverter(),
+                    new MappingJackson2HttpMessageConverter()));
+            final MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
+
+            form.add("login", mEmail);
+            form.add("password", mPassword);
+
+            ResponseEntity<Object> responseEntity;
 
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
+                responseEntity = restTemplate.postForEntity(URL, form, Object.class);
+            } catch (RestClientException ex) {
+                Log.e("Authentication", ex.getMessage(), ex);
                 return false;
             }
+            SessionHolder.getInstance().retrieveSessionID(responseEntity);
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
-
-            // TODO: register the new account here.
-            return false;
+            return true;
         }
 
         @Override

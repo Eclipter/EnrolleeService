@@ -17,13 +17,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/spring.schemas'
+        exclude 'META-INF/spring.tooling'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/spring.handlers'
+    }
 }
 
+repositories {
+    maven {
+        url  "http://dl.bintray.com/power/maven"
+    }
+}
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    compile 'org.threeten:threetenbp:1.3.2'
+    compile 'spring-contrib:spring-data-rest-android:1.1'
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.android.support:design:25.0.1'
     compile 'com.android.support:recyclerview-v7:25.0.1'

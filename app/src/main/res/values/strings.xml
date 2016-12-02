@@ -28,8 +28,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="universityLabel">Выберите ВУЗ</string>
     <string name="subjectLabel">Выберите предмет</string>
-    <string name="dateLabel">Выберите дату</string>
-    <string name="timeLabel">Выберите время</string>
+    <string name="testLabel">Выберите тест</string>
     <string name="enrollButtonText">Записаться</string>
 
     <string name="changePasswordActionLabel">Изменить пароль</string>
@@ -39,4 +38,9 @@
     <string name="nameLabel">ФИО</string>
     <string name="passportIdLabel">Идентификационный номер</string>
     <string name="phoneNumberLabel">Номер телефона</string>
+
+    <string name="universityPrompt">Университет</string>
+    <string name="subjectPrompt">Предмет</string>
+    <string name="datePrompt">Дата</string>
+    <string name="timePrompt">Время</string>
 </resources>

@@ -10,6 +10,10 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import by.bsu.dekrat.enrolleeservice.bean.UserInfoProvider;
+import by.bsu.dekrat.enrolleeservice.entity.User;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -52,5 +56,24 @@ public class AccountActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        User currentUser = UserInfoProvider.getInstance().getCurrentUser();
+        TextView headerNameTextView = (TextView)
+                navigationView.getHeaderView(0).findViewById(R.id.headerNameTextView);
+        TextView headerEmailTextView = (TextView)
+                navigationView.getHeaderView(0).findViewById(R.id.headerEmailTextView);
+        headerNameTextView.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
+        headerEmailTextView.setText(currentUser.getEmail());
+
+        TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
+        TextView emailTextView = (TextView) findViewById(R.id.emailTextView);
+        TextView passportIdTextView = (TextView) findViewById(R.id.passportIsTextView);
+        TextView phoneNumberTextView = (TextView) findViewById(R.id.phoneNumberTextView);
+
+        nameTextView.setText(currentUser.getFirstName() + " " + currentUser.getLastName() + " " +
+                currentUser.getMiddleName());
+        emailTextView.setText(currentUser.getEmail());
+        passportIdTextView.setText(currentUser.getPassportId());
+        phoneNumberTextView.setText(currentUser.getPhoneNumber());
     }
 }

@@ -1,6 +1,7 @@
 package by.bsu.dekrat.enrolleeservice;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,20 +13,36 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.hateoas.PagedResources;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import by.bsu.dekrat.enrolleeservice.bean.RestTemplateProvider;
+import by.bsu.dekrat.enrolleeservice.bean.SessionHolder;
+import by.bsu.dekrat.enrolleeservice.bean.UserInfoProvider;
 import by.bsu.dekrat.enrolleeservice.entity.TestAssignment;
-import by.bsu.dekrat.enrolleeservice.entity.TestType;
+import by.bsu.dekrat.enrolleeservice.entity.User;
 
 public class MyTestsActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private List<TestAssignment> assignmentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,23 +84,55 @@ public class MyTestsActivity extends AppCompatActivity {
             }
         });
 
+        User currentUser = UserInfoProvider.getInstance().getCurrentUser();
+        TextView headerNameTextView = (TextView)
+                navigationView.getHeaderView(0).findViewById(R.id.headerNameTextView);
+        TextView headerEmailTextView = (TextView)
+                navigationView.getHeaderView(0).findViewById(R.id.headerEmailTextView);
+        headerNameTextView.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
+        headerEmailTextView.setText(currentUser.getEmail());
+
         mRecyclerView = (RecyclerView) findViewById(R.id.testRecyclerView);
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        List<TestAssignment> assignmentList = new ArrayList<>();
-        assignmentList.add(new TestAssignment(TestType.CT, new Date(), "Maths", 92, "BSU"));
-        assignmentList.add(new TestAssignment(TestType.CT, new Date(), "Russian", 92, "BSU"));
-        assignmentList.add(new TestAssignment(TestType.CT, new Date(), "Biology", 92, "BSU"));
-        mAdapter = new TestListAdapter(assignmentList);
+        List<TestAssignment> assignments;
+        try {
+            assignments = new GetAssignmentListTask().execute().get();
+        } catch (InterruptedException | ExecutionException e) {
+            Log.e("Test assignments", e.getMessage(), e);
+            return;
+        }
+
+        mAdapter = new TestAssignmentListAdapter(assignments);
         mRecyclerView.setAdapter(mAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
                 mRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
         mRecyclerView.addItemDecoration(dividerItemDecoration);
+    }
 
+    private class GetAssignmentListTask extends AsyncTask<Void, Void, List<TestAssignment>> {
+
+        @Override
+        protected List<TestAssignment> doInBackground(Void... voids) {
+            String URL = "https://enrollee-service.herokuapp.com/testAssignments/" +
+                    "search/findByEnrolleeId";
+            int userId = UserInfoProvider.getInstance().getCurrentUser().getId();
+            UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL).queryParam("enrolleeId",
+                    userId);
+            RestTemplate restTemplate = RestTemplateProvider.getInstance().getHateoasTemplate();
+            HttpEntity<Object> httpEntity = new HttpEntity<>(
+                    SessionHolder.getInstance().getHeadersWithSessionID());
+            ResponseEntity<PagedResources<TestAssignment>> response = restTemplate.exchange(
+                    builder.build().encode().toUriString(),
+                    HttpMethod.GET, httpEntity,
+                    new ParameterizedTypeReference<PagedResources<TestAssignment>>() {},
+                    Collections.emptyMap());
+            return new ArrayList<>(response.getBody().getContent());
+        }
     }
 
     @Override
