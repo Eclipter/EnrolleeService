@@ -1,7 +1,6 @@
 package by.bsu.dekrat.enrolleeservice;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,7 +12,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,20 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Collections;
-import java.util.concurrent.ExecutionException;
-
-import by.bsu.dekrat.enrolleeservice.bean.RestTemplateProvider;
-import by.bsu.dekrat.enrolleeservice.bean.SessionHolder;
 import by.bsu.dekrat.enrolleeservice.bean.UserInfoProvider;
-import by.bsu.dekrat.enrolleeservice.entity.User;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -87,16 +72,6 @@ public class MainActivity extends AppCompatActivity
 
         navigationView.setCheckedItem(R.id.nav_news);
 
-        User user;
-
-        try {
-            user = new GetUserInfoTask().execute().get();
-            UserInfoProvider.getInstance().setCurrentUser(user);
-        } catch (InterruptedException | ExecutionException e) {
-            Log.e("User info retrieving", e.getMessage(), e);
-            return;
-        }
-
         ImageView imageView = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.headerImageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,22 +88,9 @@ public class MainActivity extends AppCompatActivity
         TextView headerEmailTextView = (TextView)
                 navigationView.getHeaderView(0).findViewById(R.id.headerEmailTextView);
 
-        headerNameTextView.setText(user.getFirstName() + " " + user.getLastName());
-        headerEmailTextView.setText(user.getEmail());
-    }
-
-    private class GetUserInfoTask extends AsyncTask<Void, Void, User> {
-
-        @Override
-        protected User doInBackground(Void... voids) {
-            RestTemplate restTemplate = RestTemplateProvider.getInstance().getCommonTemplate();
-            String URL = "https://enrollee-service.herokuapp.com/users/current";
-            HttpHeaders httpHeaders = SessionHolder.getInstance().getHeadersWithSessionID();
-            HttpEntity<Object> entity = new HttpEntity<>(httpHeaders);
-            ResponseEntity<User> response = restTemplate.exchange(URL, HttpMethod.GET, entity,
-                    new ParameterizedTypeReference<User>() {}, Collections.emptyMap());
-            return response.getBody();
-        }
+        headerNameTextView.setText(UserInfoProvider.getInstance().getCurrentUser().getFirstName()
+                + " " + UserInfoProvider.getInstance().getCurrentUser().getLastName());
+        headerEmailTextView.setText(UserInfoProvider.getInstance().getCurrentUser().getEmail());
     }
 
     @Override

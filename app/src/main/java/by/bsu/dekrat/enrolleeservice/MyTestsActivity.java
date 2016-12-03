@@ -13,7 +13,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,7 +30,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import by.bsu.dekrat.enrolleeservice.bean.RestTemplateProvider;
 import by.bsu.dekrat.enrolleeservice.bean.SessionHolder;
@@ -126,20 +124,7 @@ public class MyTestsActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        List<TestAssignment> assignments;
-        try {
-            assignments = new GetAssignmentListTask().execute().get();
-        } catch (InterruptedException | ExecutionException e) {
-            Log.e("Test assignments", e.getMessage(), e);
-            return;
-        }
-
-        mAdapter = new TestAssignmentListAdapter(assignments);
-        mRecyclerView.setAdapter(mAdapter);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
-                mRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
-        mRecyclerView.addItemDecoration(dividerItemDecoration);
+        new GetAssignmentListTask().execute();
     }
 
     private class GetAssignmentListTask extends AsyncTask<Void, Void, List<TestAssignment>> {
@@ -160,6 +145,16 @@ public class MyTestsActivity extends AppCompatActivity {
                     new ParameterizedTypeReference<PagedResources<TestAssignment>>() {},
                     Collections.emptyMap());
             return new ArrayList<>(response.getBody().getContent());
+        }
+
+        @Override
+        protected void onPostExecute(List<TestAssignment> assignments) {
+            mAdapter = new TestAssignmentListAdapter(assignments);
+            mRecyclerView.setAdapter(mAdapter);
+
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(
+                    mRecyclerView.getContext(), DividerItemDecoration.VERTICAL);
+            mRecyclerView.addItemDecoration(dividerItemDecoration);
         }
     }
 
