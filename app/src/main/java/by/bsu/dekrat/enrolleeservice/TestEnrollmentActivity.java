@@ -33,6 +33,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -185,7 +186,9 @@ public class TestEnrollmentActivity extends AppCompatActivity {
 
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                currentTest = tests.get(i);
+                if(!adapterView.getItemAtPosition(i).equals("Нет доступных тестов")) {
+                    currentTest = tests.get(i);
+                }
             }
 
             @Override
@@ -314,7 +317,8 @@ public class TestEnrollmentActivity extends AppCompatActivity {
                 testInfo.add(test.getType() + ": " + format.format(test.getDate()));
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(TestEnrollmentActivity.this,
-                    android.R.layout.simple_spinner_item, testInfo);
+                    android.R.layout.simple_spinner_item,
+                    (!testInfo.isEmpty()) ? testInfo : Arrays.asList("Нет доступных тестов"));
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             testSpinner.setAdapter(adapter);
         }

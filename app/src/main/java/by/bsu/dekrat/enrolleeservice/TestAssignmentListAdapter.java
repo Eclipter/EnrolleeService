@@ -53,8 +53,8 @@ public class TestAssignmentListAdapter extends RecyclerView.Adapter<TestAssignme
         if(assignment.getPoints() != 0) {
             holder.testInfoPointsTextView.setText(assignment.getPoints());
         } else {
-            holder.testInfoPointsTextView.setText("Н/Д");
-            holder.testInfoPointsTextView.setAlpha(0.2f);
+            holder.testInfoPointsTextView.setText("‒");
+            holder.testInfoPointsTextView.setAlpha(1.0f);
         }
 
         holder.testPaymentTextView.setText(
